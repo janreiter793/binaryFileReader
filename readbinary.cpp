@@ -4,6 +4,7 @@
 #include<iostream>
 #include<fstream>
 #include<iomanip>
+#include<cctype>
 
 // Function for printing a byte as a hex
 void printByteAsHex(char ch);
@@ -43,11 +44,20 @@ int main(int argc, char *argv[]) {
     if((bytenum % 16) == 15) {
       std::cout << "  ";
       for(size_t t = 0; t < 8; t++) {
-        std::cout << line[t];
+        if(isprint(static_cast<unsigned char>(line[t]))) {
+          std::cout << line[t];
+        } else {
+          std::cout << ".";
+        }
       }
       std::cout << " ";
       for(size_t t = 8; t < 16; t++) {
-        std::cout << line[t];
+        if(isprint(static_cast<unsigned char>(line[t]))) {
+          std::cout << line[t];
+        } else {
+          std::cout << ".";
+        }
+
       }
       std::cout << "\n";
     }
@@ -66,11 +76,20 @@ int main(int argc, char *argv[]) {
   }
   std::cout << "  ";
   for(size_t t = 0; (t < 8) && (t < (paddingbytes % 16)); t++) {
-    std::cout << line[t];
+    if(isprint(static_cast<unsigned char>(line[t]))) {
+      std::cout << line[t];
+    } else {
+      std::cout << ".";
+    }
   }
   std::cout << " ";
   for(size_t t = 8; (t < 16) && (t < (paddingbytes % 16)); t++) {
-    std::cout << line[t];
+    if(isprint(static_cast<unsigned char>(line[t]))) {
+      std::cout << line[t];
+    } else {
+      std::cout << ".";
+    }
+
   }
   
   std::cout << "\n";
